@@ -1,38 +1,32 @@
+body {
+  background-color: #FF5937;
+}
+
 h1 {
   font-size: 3em;
   font-family: 'Cuprum', sans-serif;
   text-align: center;
-  margin: 1em;
-  background-color: rgb(138, 101, 138);
-  padding: 
+  margin: 2em;
+  background-color: rgb(84, 151, 187);
+  color: whitesmoke;
+  border-radius: 10px;
+  border: solid black 0.08em;
 }
 
 img {
   width: 20%;
+  border: solid black 0.3em;
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
 }
 
 #prod-container {
-  background-image: 
-  width: 40em;
-  border-radius: 5px, 10px, 5px, 10px;
-}
-
-#prod-one {
-  float: left;
-  height: 60%;
-  border: solid red 1em;
-
-}
-
-#prod-two {
-  float:right;
-  height: 60%;
-  border: solid blue 1em;
-
-}
-
-#prod-three {
-  border: solid black 1em;
-  height: 60%;
-
+  border-radius: 10px;
+  border: dotted black 0.3em;
+  min-height: 335px;
+  width: 70em;
+  margin: auto;
+  padding: 1em;
+  text-align: center;
 }
