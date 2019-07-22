@@ -1,0 +1,38 @@
+h1 {
+  font-size: 3em;
+  font-family: 'Cuprum', sans-serif;
+  text-align: center;
+  margin: 1em;
+  background-color: rgb(138, 101, 138);
+  padding: 
+}
+
+img {
+  width: 20%;
+}
+
+#prod-container {
+  background-image: 
+  width: 40em;
+  border-radius: 5px, 10px, 5px, 10px;
+}
+
+#prod-one {
+  float: left;
+  height: 60%;
+  border: solid red 1em;
+
+}
+
+#prod-two {
+  float:right;
+  height: 60%;
+  border: solid blue 1em;
+
+}
+
+#prod-three {
+  border: solid black 1em;
+  height: 60%;
+
+}
