@@ -11,6 +11,7 @@ h1 {
   color: whitesmoke;
   border-radius: 10px;
   border: solid black 0.08em;
+  padding: 1em;
 }
 
 img {
@@ -29,4 +30,18 @@ img {
   margin: auto;
   padding: 1em;
   text-align: center;
+}
+
+footer {
+  height: 3em;
+  background-color: rgb(84, 151, 187);
+  margin-top: 5em;
+}
+
+p {
+  font-size: 1em;
+  color: whitesmoke;
+  text-align: center;
+  padding-top: 1em;
+  font-family: 'Cuprum', sans-serif;
 }

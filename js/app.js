@@ -76,12 +76,13 @@ function getUniqueIndex(){
 function handleClick(){
   var chosenImg = event.target.title;
   totalVotes++;
+  
   for(var i = 0; i < allProducts.length; i++) {
     if(allProducts[i].name === chosenImg){
       allProducts[i].votes++;
     }
   }
-  if(totalVotes > 25){
+  if(totalVotes > 24){
     prodContainerEl.removeEventListener('click', handleClick, true);//turns off voting after 25
   }
   render();
