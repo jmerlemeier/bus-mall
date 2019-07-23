@@ -5,6 +5,7 @@ var imageOneEl = document.getElementById('prod-one');//dynamic
 var imageTwoEl = document.getElementById('prod-two');
 var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
+var ulEl = document.getElementById('list');
 
 // GLOBAL VARIABLES
 var totalVotes = 0;
@@ -76,7 +77,7 @@ function getUniqueIndex(){
 function handleClick(){
   var chosenImg = event.target.title;
   totalVotes++;
-  
+
   for(var i = 0; i < allProducts.length; i++) {
     if(allProducts[i].name === chosenImg){
       allProducts[i].votes++;
@@ -92,3 +93,20 @@ prodContainerEl.addEventListener('click', handleClick, true);
 
 render();
 
+
+// prototype?
+Product.prototype.generateList = function() {
+  for(var i = 0; i < allProducts.length; i++){
+    //append the list to the DOM
+    //make li
+    var liEl = document.createElement('li');
+    //give it context
+    liEl.textContent = `${this.votes} votes for ${this.name}`;
+    //append to DOM ul
+    ulEl.appendChild(liEl);
+  }
+};
+
+for(var i = 0; i < allProducts.length; i++){
+  allProducts[i].generateList();
+}
