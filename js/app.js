@@ -5,10 +5,9 @@ var imageOneEl = document.getElementById('prod-one');//dynamic
 var imageTwoEl = document.getElementById('prod-two');
 var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
-var ulEl = document.getElementById('list');
 
 // GLOBAL VARIABLES
-var votesRemaining = 25; //Count down  variable here
+var votesRemaining = 3; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
@@ -89,7 +88,6 @@ function handleClick(){
   }
   if(votesRemaining === 0){
     prodContainerEl.removeEventListener('click', handleClick, true);//turns off voting after 25 //true means bubbling is set to true. If put false, then NO bubbling, you would event CAPTURE
-    generateList();
     generateArrays();
     generateChart();
   }
@@ -100,25 +98,6 @@ prodContainerEl.addEventListener('click', handleClick, true);
 
 render();
 
-
-// prototype because each object is rendering something
-Product.prototype.generateResults = function() {//each object instance only renders its own li.
-
-  //append the list to the DOM
-  //make li
-  var liEl = document.createElement('li');
-  //give it context
-  liEl.textContent = `${this.votes} votes for ${this.name}`;
-  //append to DOM ul
-  ulEl.appendChild(liEl);
-
-};
-
-function generateList() { //helper function
-  for(var i = 0; i < allProducts.length; i++){
-    allProducts[i].generateResults();
-  }
-}
 
 //loop over all instances and push just the NAMES in a new array
 //loop over all instances and push just the VOTES in a new array
