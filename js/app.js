@@ -7,7 +7,7 @@ var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
 
 // GLOBAL VARIABLES
-var votesRemaining = 3; //Count down  variable here
+var votesRemaining = 25; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
@@ -76,6 +76,14 @@ function getUniqueIndex(){
   return randomIndex;
 }
 
+//loop over all instances and push just the NAMES in a new array
+//loop over all instances and push just the VOTES in a new array
+function generateArrays(){
+  for(i = 0; i < allProducts.length;i++){
+    namesArray.push(allProducts[i].name);
+    votesArray.push(allProducts[i].votes);
+  }
+}
 //This is my Event Handler
 function handleClick(){
   var chosenImg = event.target.title;//figuring out which title was clicked on
@@ -99,17 +107,9 @@ prodContainerEl.addEventListener('click', handleClick, true);
 render();
 
 
-//loop over all instances and push just the NAMES in a new array
-//loop over all instances and push just the VOTES in a new array
-function generateArrays(){
-  for(i = 0; i < allProducts.length;i++){
-    namesArray.push(allProducts[i].name);
-    votesArray.push(allProducts[i].votes);
-  }
-}
 
 function generateChart() {
-  //--------------- Chart.js --------------------
+  //--------------- Chart.js BARCHART --------------------
 
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
@@ -117,30 +117,30 @@ function generateChart() {
     data: {
       labels: namesArray,
       datasets: [{
-        label: '# of Votes',
+        label: 'Number of Votes',
         data: votesArray,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',//0.2 opacity
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',//5
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',//10
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',//15
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',//20
+          'rgba(255, 99, 132, 0.6)',//0.2 opacity
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',//5
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',//10
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',//15
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',//20
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -180,3 +180,4 @@ function generateChart() {
 
 }
 
+  //--------------- Chart.js PIECHART --------------------
