@@ -1,0 +1,47 @@
+body {
+  background-color: #FF5937;
+}
+
+h1 {
+  font-size: 3em;
+  font-family: 'Cuprum', sans-serif;
+  text-align: center;
+  margin: 2em;
+  background-color: rgb(84, 151, 187);
+  color: whitesmoke;
+  border-radius: 10px;
+  border: solid black 0.08em;
+  padding: 1em;
+}
+
+img {
+  width: 20%;
+  border: solid black 0.3em;
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
+}
+
+#prod-container {
+  border-radius: 10px;
+  border: dotted black 0.3em;
+  min-height: 335px;
+  width: 70em;
+  margin: auto;
+  padding: 1em;
+  text-align: center;
+}
+
+footer {
+  height: 3em;
+  background-color: rgb(84, 151, 187);
+  margin-top: 5em;
+}
+
+p {
+  font-size: 1em;
+  color: whitesmoke;
+  text-align: center;
+  padding-top: 1em;
+  font-family: 'Cuprum', sans-serif;
+}
