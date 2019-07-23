@@ -12,6 +12,8 @@ var totalVotes = 0; //can do votes remaining and decrement later
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
+var namesArray = [];
+var votesArray = [];
 
 //Constructor
 function Product(name) {
@@ -75,6 +77,7 @@ function getUniqueIndex(){
   return randomIndex;
 }
 
+//This is my Event Handler
 function handleClick(){
   var chosenImg = event.target.title;//figuring out which title was clicked on
   totalVotes++;//could decrement here (see totalVotes above)
@@ -85,8 +88,10 @@ function handleClick(){
     }
   }
   if(totalVotes > 24){
-    prodContainerEl.removeEventListener('click', handleClick, true);//turns off voting after 25 //true means bubbling is set to true if put false, then NO bubbling, you would event CAPTURE
+    prodContainerEl.removeEventListener('click', handleClick, true);//turns off voting after 25 //true means bubbling is set to true. If put false, then NO bubbling, you would event CAPTURE
     generateList();
+    generateArrays();
+    generateChart();
   }
   render();
 }
@@ -97,7 +102,8 @@ render();
 
 
 // prototype because eaach object is rendering something
-Product.prototype.generateResults = function() {
+Product.prototype.generateResults = function() {//each object instance only renders its own li.
+
   //append the list to the DOM
   //make li
   var liEl = document.createElement('li');
@@ -114,4 +120,55 @@ function generateList() { //helper function
   }
 }
 
-//each object instance only renders its own li.
+//loop over all instances and push just the NAMES in a new array
+//loop over all instances and push just the VOTES in a new array
+function generateArrays(){
+  for(i = 0; i < allProducts.length;i++){
+    namesArray.push(allProducts[i].name);
+    votesArray.push(allProducts[i].votes);
+  }
+}
+
+function generateChart() {
+  //--------------- Chart.js --------------------
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: namesArray,
+      datasets: [{
+        label: '# of Votes',
+        data: votesArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',//0.2 opacity
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+}
+
