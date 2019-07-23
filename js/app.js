@@ -8,7 +8,7 @@ var prodContainerEl = document.getElementById('prod-container');
 var ulEl = document.getElementById('list');
 
 // GLOBAL VARIABLES
-var totalVotes = 0; //can do votes remaining and decrement later
+var votesRemaining = 25; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
@@ -80,14 +80,14 @@ function getUniqueIndex(){
 //This is my Event Handler
 function handleClick(){
   var chosenImg = event.target.title;//figuring out which title was clicked on
-  totalVotes++;//could decrement here (see totalVotes above)
+  votesRemaining--;//could decrement here (see votesRemaining above)
 
   for(var i = 0; i < allProducts.length; i++) {
     if(allProducts[i].name === chosenImg){
       allProducts[i].votes++;
     }
   }
-  if(totalVotes > 24){
+  if(votesRemaining === 0){
     prodContainerEl.removeEventListener('click', handleClick, true);//turns off voting after 25 //true means bubbling is set to true. If put false, then NO bubbling, you would event CAPTURE
     generateList();
     generateArrays();
@@ -101,7 +101,7 @@ prodContainerEl.addEventListener('click', handleClick, true);
 render();
 
 
-// prototype because eaach object is rendering something
+// prototype because each object is rendering something
 Product.prototype.generateResults = function() {//each object instance only renders its own li.
 
   //append the list to the DOM
@@ -145,16 +145,45 @@ function generateChart() {
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',//5
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',//10
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',//15
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',//20
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',//5
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',//10
           'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',//15
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',//20
         ],
         borderWidth: 1
       }]
