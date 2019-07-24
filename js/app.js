@@ -5,6 +5,8 @@ var imageOneEl = document.getElementById('prod-one');//dynamic
 var imageTwoEl = document.getElementById('prod-two');
 var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
+//Get Button DOM NODE
+var buttonEl = document.getElementById('button');
 
 // GLOBAL VARIABLES
 var votesRemaining = 25; //Count down  variable here
@@ -13,6 +15,13 @@ var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
 var namesArray = [];
 var votesArray = [];
+
+//RESET BUTTON
+//event listener for click
+//event handler then localstorage.clear()
+buttonEl.addEventListener('click', function(){//anonymous function which is the HANDLER!!
+  localStorage.clear();
+});
 
 //Constructor
 //put in All Products

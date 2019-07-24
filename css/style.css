@@ -32,6 +32,23 @@ img {
   text-align: center;
 }
 
+#button {
+  height: 5em;
+  color: black;
+  text-align: center;
+  margin: 3em;
+  border-radius: 8px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+#buttonpush {
+  height: 5em;
+  color: black;
+  text-align: center;
+  margin: 3em;
+  border-radius: 8px;
+  font-family: 'Share Tech Mono', monospace;
+}
 
 footer {
   height: 3em;
