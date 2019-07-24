@@ -7,7 +7,7 @@ var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
 
 // GLOBAL VARIABLES
-var votesRemaining = 25; //Count down  variable here
+var votesRemaining = 5; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
@@ -25,9 +25,14 @@ function Product(name) {
   allProducts.push(this);
 }
 
+//========= INSTANTIATION STATION ===========
 //New Instances of Images/Products (do with for loop)
-for(var i = 0; i < images.length; i++) {
-  new Product(images[i]);
+function stringify = {
+  var stringify = JSON.stringify(allProducts);
+  localStorage.setItem('skeletonkey', stringify);
+  for(var i = 0; i < images.length; i++) {
+    new Product(images[i]);
+  }
 }
 
 
@@ -100,17 +105,15 @@ function handleClick(){
     generateChart();
   }
   render();
+  stringify();
 }
 
 prodContainerEl.addEventListener('click', handleClick, true);
 
 render();
 
-
-
 function generateChart() {
   //--------------- Chart.js BARCHART --------------------
-
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -180,4 +183,26 @@ function generateChart() {
 
 }
 
-  //--------------- Chart.js PIECHART --------------------
+//--------------- LOCAL STORAGE --------------------
+//TIMELINE:
+//1. User loads page
+//2.if empty (localStorage.length === 0) ---> instantiate and put in allProducts and render page ---> store data
+if (localStorage.length === 0) {
+  //instantiate
+}
+
+//(length != 0) else pull out from local storage and add to AllProducts (grab the data from local storage and get ready to add votes to it).  
+
+//2. user votes.
+//3. Store the votes.
+//4. New User loads page.
+
+
+//allProducts is my array of objects
+//put in function and after 25 votes call (in hander)
+
+//get out
+// var parse = localStorage.getItem('skeletonkey');
+// JSON.parse(parse);
+
+
