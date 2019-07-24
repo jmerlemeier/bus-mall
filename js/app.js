@@ -5,6 +5,8 @@ var imageOneEl = document.getElementById('prod-one');//dynamic
 var imageTwoEl = document.getElementById('prod-two');
 var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
+//Get Button DOM NODE
+var buttonEl = document.getElementById('button');
 
 // GLOBAL VARIABLES
 var votesRemaining = 25; //Count down  variable here
@@ -14,22 +16,22 @@ var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.j
 var namesArray = [];
 var votesArray = [];
 
+//RESET BUTTON
+//event listener for click
+//event handler then localstorage.clear()
+buttonEl.addEventListener('click', function(){//anonymous function which is the HANDLER!!
+  localStorage.clear();
+});
+
 //Constructor
+//put in All Products
 function Product(name) {
-  // console.log('splitting the name', name.split('.')[0]);
-  this.name = name.split('.')[0];//literally takes an string and splits it on whatever you want ["bag", "jpg"]. Turns a string into an array. (also it gets rid of the character you split on)
+  this.name = name.split('.')[0];
   this.filepath = `img/${name}`;
   this.votes = 0;
   this.views = 0;
-
   allProducts.push(this);
 }
-
-//New Instances of Images/Products (do with for loop)
-for(var i = 0; i < images.length; i++) {
-  new Product(images[i]);
-}
-
 
 function render() { //REfactor and DRY this code, please
   var randomIndex = getUniqueIndex();//Index passed the test
@@ -52,7 +54,6 @@ function render() { //REfactor and DRY this code, please
   imageThreeEl.src = allProducts[randomIndex].filepath;
   imageThreeEl.alt = allProducts[randomIndex].name;
   imageThreeEl.title = allProducts[randomIndex].name;
-
 }
 
 //Helper Functions
@@ -100,17 +101,17 @@ function handleClick(){
     generateChart();
   }
   render();
+  stringify();
 }
 
-prodContainerEl.addEventListener('click', handleClick, true);
-
-render();
-
-
+function stringify(){
+  var stringify = JSON.stringify(allProducts);
+  localStorage.setItem('skeletonkey', stringify);
+}
 
 function generateChart() {
+  
   //--------------- Chart.js BARCHART --------------------
-
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -177,7 +178,33 @@ function generateChart() {
       }
     }
   });
-
 }
 
-  //--------------- Chart.js PIECHART --------------------
+//========= INSTANTIATION STATION ===========
+//New Instances of Images/Products (do with for loop)
+if (localStorage.length === 0) {
+  //Instantiate
+  for(var i = 0; i < images.length; i++) {
+    new Product(images[i]);
+  }
+} else {
+  //pull out stored data from LS
+  var parse = localStorage.getItem('skeletonkey');
+  var fullyparsed = JSON.parse(parse);
+  //Add user votes to AllProducts = data object from local storages
+  allProducts = fullyparsed;
+  //store votes
+  //Stringify stuff
+}
+
+//--------------- Executable Code --------------------
+render();
+
+prodContainerEl.addEventListener('click', handleClick, true);
+
+
+
+
+
+
+
