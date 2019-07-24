@@ -7,7 +7,7 @@ var imageThreeEl = document.getElementById('prod-three');
 var prodContainerEl = document.getElementById('prod-container');
 
 // GLOBAL VARIABLES
-var votesRemaining = 5; //Count down  variable here
+var votesRemaining = 25; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
@@ -15,26 +15,14 @@ var namesArray = [];
 var votesArray = [];
 
 //Constructor
+//put in All Products
 function Product(name) {
-  // console.log('splitting the name', name.split('.')[0]);
-  this.name = name.split('.')[0];//literally takes an string and splits it on whatever you want ["bag", "jpg"]. Turns a string into an array. (also it gets rid of the character you split on)
+  this.name = name.split('.')[0];
   this.filepath = `img/${name}`;
   this.votes = 0;
   this.views = 0;
-
   allProducts.push(this);
 }
-
-//========= INSTANTIATION STATION ===========
-//New Instances of Images/Products (do with for loop)
-function stringify = {
-  var stringify = JSON.stringify(allProducts);
-  localStorage.setItem('skeletonkey', stringify);
-  for(var i = 0; i < images.length; i++) {
-    new Product(images[i]);
-  }
-}
-
 
 function render() { //REfactor and DRY this code, please
   var randomIndex = getUniqueIndex();//Index passed the test
@@ -57,7 +45,6 @@ function render() { //REfactor and DRY this code, please
   imageThreeEl.src = allProducts[randomIndex].filepath;
   imageThreeEl.alt = allProducts[randomIndex].name;
   imageThreeEl.title = allProducts[randomIndex].name;
-
 }
 
 //Helper Functions
@@ -108,11 +95,13 @@ function handleClick(){
   stringify();
 }
 
-prodContainerEl.addEventListener('click', handleClick, true);
-
-render();
+function stringify(){
+  var stringify = JSON.stringify(allProducts);
+  localStorage.setItem('skeletonkey', stringify);
+}
 
 function generateChart() {
+  
   //--------------- Chart.js BARCHART --------------------
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
@@ -180,29 +169,33 @@ function generateChart() {
       }
     }
   });
-
 }
 
-//--------------- LOCAL STORAGE --------------------
-//TIMELINE:
-//1. User loads page
-//2.if empty (localStorage.length === 0) ---> instantiate and put in allProducts and render page ---> store data
+//========= INSTANTIATION STATION ===========
+//New Instances of Images/Products (do with for loop)
 if (localStorage.length === 0) {
-  //instantiate
+  //Instantiate
+  for(var i = 0; i < images.length; i++) {
+    new Product(images[i]);
+  }
+} else {
+  //pull out stored data from LS
+  var parse = localStorage.getItem('skeletonkey');
+  var fullyparsed = JSON.parse(parse);
+  //Add user votes to AllProducts = data object from local storages
+  allProducts = fullyparsed;
+  //store votes
+  //Stringify stuff
 }
 
-//(length != 0) else pull out from local storage and add to AllProducts (grab the data from local storage and get ready to add votes to it).  
+//--------------- Executable Code --------------------
+render();
 
-//2. user votes.
-//3. Store the votes.
-//4. New User loads page.
+prodContainerEl.addEventListener('click', handleClick, true);
 
 
-//allProducts is my array of objects
-//put in function and after 25 votes call (in hander)
 
-//get out
-// var parse = localStorage.getItem('skeletonkey');
-// JSON.parse(parse);
+
+
 
 
