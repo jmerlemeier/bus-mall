@@ -13,6 +13,7 @@ var votesRemaining = 25; //Count down  variable here
 var recentRandomNumbers = [];
 var allProducts = [];
 var images = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];//can loop through this array to create new instances rather than creating a huge list of instances.
+
 var namesArray = [];
 var votesArray = [];
 
@@ -69,8 +70,8 @@ function getUniqueIndex(){
     randomIndex = randomNumber(0, allProducts.length-1);//if it IS in the array, we re-run the random number function
   }
 
-  if(recentRandomNumbers.length > 5) {//comparing THIS image with 5 others (3 previous and 2 new)If allowed more than 5, we would run out of numbers
-    recentRandomNumbers.shift();//removes from the beginning (the oldest random number)
+  if(recentRandomNumbers.length > 5) { //comparing THIS image with 5 others (3 previous and 2 new)If allowed more than 5, we would run out of numbers
+    recentRandomNumbers.shift(); //removes from the beginning (the oldest random number)
   }
 
   recentRandomNumbers.push(randomIndex);//pushes new index onto the end of array. (if did unshift, you would need to pop on line 71)
