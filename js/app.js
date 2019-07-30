@@ -33,6 +33,24 @@ function Product(name) {
   allProducts.push(this);
 }
 
+//========= INSTANTIATION STATION ===========
+//New Instances of Images/Products (do with for loop)
+if (localStorage.length === 0) {
+  //Instantiate
+  for(var i = 0; i < images.length; i++) {
+    new Product(images[i]);
+  }
+} else {
+  //pull out stored data from LS
+  var parse = localStorage.getItem('skeletonkey');
+  var fullyparsed = JSON.parse(parse);
+  //Add user votes to AllProducts = data object from local storages
+  allProducts = fullyparsed;
+  //store votes
+  //Stringify stuff
+}
+
+
 function render() { //REfactor and DRY this code, please
   var randomIndex = getUniqueIndex();//Index passed the test
   allProducts[randomIndex].views++;
@@ -180,22 +198,6 @@ function generateChart() {
   });
 }
 
-//========= INSTANTIATION STATION ===========
-//New Instances of Images/Products (do with for loop)
-if (localStorage.length === 0) {
-  //Instantiate
-  for(var i = 0; i < images.length; i++) {
-    new Product(images[i]);
-  }
-} else {
-  //pull out stored data from LS
-  var parse = localStorage.getItem('skeletonkey');
-  var fullyparsed = JSON.parse(parse);
-  //Add user votes to AllProducts = data object from local storages
-  allProducts = fullyparsed;
-  //store votes
-  //Stringify stuff
-}
 
 //--------------- Executable Code --------------------
 render();
